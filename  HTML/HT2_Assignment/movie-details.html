@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      Movie Details
+    </title>
+  </head>
+  <body>
+    <header>
+     <nav>
+        <h2><a href="index.html">Movie Database</a></h2>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="movies.html">Movies</a></li>
+          <li><a href="report.html">Report</a></li>
+        </ul>
+      </nav>
+      <h1>Movie Details</h1>
+    </header>
+    <main>
+      <section id="movieDetail">
+        
+      </section>
+    </main>
+    <footer>
+      <p>&copy; 2023 Company Name. All rights reserved.</p>
+    </footer>
+    <script>
+      let movies = [
+        {id:"1", genre: "action", details: "this is an action-packed movie", releaseDate: "2023-01-15", director: "John Doe"},
+        {id:"2", genre:"Drama", details: "A dramatic story unfolds in this movie", releaseDate:"2023-02-20", director: "Jane Smith"},
+        {id:"3", genre: "comedy", details: "Get ready to laugh with this comedy" , releaseDate: "2023-05-20", director: "Jane Walk"}
+      ];
+
+      function getParameterById(id){
+
+        let url = new URL(window.location.href);
+
+        return url.searchParams.get(id);
+      }
+
+      let movieID = getParameterById('id');
+      let movie;
+      for(let i=0; i < movies.length; i++){
+        if(movies[i].id === movieID){
+          movie = movies[i];
+        }
+      }
+let movieDetailElement = document.getElementById('movieDetail');
+
+      if(movie){
+        movieDetailElement.innerHTML = `
+                  <h2>Movie: ${movie.id}</h2> 
+                  <ul>
+                    <li><strong>Genre</strong>: ${movie.genre}</li>
+                    <li><strong>Details:</strong> ${movie.details}</li>
+                    <li><strong>Release Date: </strong>${movie.releaseDate}</li>
+                    <li><strong>Director:</strong> ${movie.director}</li>
+                  </ul>
+        `
+      } else{
+        movieDetailElement.innerHTML = "Movie not found";
+      }
+    </script>
+  </body>
+</html>
