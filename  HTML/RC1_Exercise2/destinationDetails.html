@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      Destination Details
+    </title>
+  </head>
+  <body>
+    <header>
+      <h3><a href="index.html">Travel Database</a></h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="destinations.html">Destinations</a></li>
+          <li><a href="travelReport.html">Travel Report</a></li>
+          <li><a href="travelTips.html">Travel Tips</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <h2>Travel Details</h2>
+      <section id="destinationDetail">
+
+      </section>
+    </main>
+      <script>
+        let destinations = [
+          {
+           id:"1", 
+           cityName: "Paris", 
+           duration: "7 days", 
+           highlights: "Eiffel Tower, Louvre Museum", 
+           details: "A wonderful trip to the romantic city of Paris"
+          },
+          {
+            id:"2", 
+           cityName: "Tokyo", 
+           duration: "6 days",
+           highlights: "Tokyo Tower, Meiji Shrine", 
+           details: "A wonderful trip to the city which created Pokemon"
+          },
+          {
+            id:"3",
+           cityName:"Rome", 
+           duration: "5 days", 
+           highlights: "Colosseum, Vatican City", 
+           details: "A wonderful trip to the ancient city called Rome"
+          },
+          {
+            id:"4", 
+            cityName:"New York City",
+            duration: "4 days",
+            highlights: "Statue of Liberty, Central Park", 
+            details: "A wonderful trip to the city which never sleeps"
+          },
+           {
+            id:"5", 
+            cityName:"Cape Town",
+            duration: "3 days", 
+            highlights: "Table Mountain, Robben Island", 
+            details: "A wonderful trip to the historical city of South Africa"
+          },
+          {
+            id:"6", 
+           cityName:"Sydney",
+           duration: "2 days", 
+           highlights: "Sydney Opera House, Bondi Beach",
+           details: "A wonderful trip to the modern city Sydney"
+          }
+        ];
+
+        function getParameterById(id){
+
+          let url = new URL(window.location.href);
+
+          return url.searchParams.get(id);
+        }
+
+        let destinationID = getParameterById('id');
+        let destination;
+        for(let i=0; i < destinations.length; i++){
+          if(destinations[i].id === destinationID){
+            destination = destinations[i];
+          }
+        }
+      let destinationDetailElement = document.getElementById('destinationDetail');
+
+        if(destination){
+          destinationDetailElement.innerHTML = `
+                   <h2> Destination number: ${destination.id}</h2>
+                    <h2>Destination: ${destination.cityName}</h2> 
+                    <ul>
+                      <li><strong>Duration</strong>: ${destination.duration}</li>
+                      <li><strong>Highlights:</strong> ${destination.highlights}</li>
+                      <li><strong>Details:</strong> ${destination.details}</li>
+                    </ul>
+          `
+        } else{
+          destinationDetailElement.innerHTML = "Destination not found";
+        }
+      </script>
+  </body>
+</html>
