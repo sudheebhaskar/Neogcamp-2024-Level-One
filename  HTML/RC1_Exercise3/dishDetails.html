@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+       Dishes Details
+    </title>
+  </head>
+  <body>
+    <header>
+      <h2><a href="index.html">Food Database</a></h2>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="dishes.html">Dishes</a></li>
+          <li><a href="foodReport.html">Food Report</a></li>
+          <li><a href="cookingTips.html">Cooking Tips</a></li>
+        </ul>
+      </nav>
+    </header>
+
+     <main>
+          <h2>Dishes Details</h2>
+          <section id="dishDetail">
+
+          </section>
+        </main>
+          <script>
+            let dishes = [
+              {
+               id:"1", 
+               name: "Pizza",
+              cuisine: "Italian",
+              ingredients: "Dough, Tomato Sauce, Cheese, Toppings",
+              details: "A delicious Italian dish with a variety of toppings"
+              },
+              {
+              id:"2", 
+              name: "Sushi",
+              cuisine: "Japanese",
+              ingredients:"Rice, fish, seaweed, vegetables",
+              details:"Traditionally made with medium-grain white rice."
+            },
+              {
+                id:"3",
+               name:"Tacos", 
+               cuisine: "Mexican", 
+               ingredients: "Tortillas, meat, salsa, toppings", 
+               details: "A taco is a Mexican food consisting of a small hand-sized-corn or wheat-based tortilla topped with a filling."
+              },
+              {
+                id:"4", 
+                name:"Pasta Carbonara",
+                cuisine: "Italian",
+                ingredients: "Flour, sugar, cocoa, eggs, chocolate", 
+                details:"This is a real Italian spaghetti carbonara recipe, in all its creamy glory but made the tarditional way with no cream."
+              },
+               {
+                id:"5", 
+                name:"Chocolate Cake",
+                cuisine: "Dessert",
+                ingredients: "Flour, sugar, cocoa, eggs, chocolate",
+                 details:"A tasty and colorful dessert which is the most liked by children."
+              },
+              {
+                id:"6", 
+               name:"Biryani",
+               cuisine: "Indian", 
+               ingredients: "Rice, meat, spices, vegetables",
+               details: "A spicy Indian food which will be available all over India."
+              }
+            ];
+
+            function getParameterById(id){
+
+              let url = new URL(window.location.href);
+
+              return url.searchParams.get(id);
+            }
+
+            let dishID = getParameterById('id');
+            let dish;
+            for(let i=0; i < dishes.length; i++){
+              if(dishes[i].id === dishID){
+                dish = dishes[i];
+              }
+            }
+          let dishDetailElement = document.getElementById('dishDetail');
+
+
+            if(dish){
+              dishDetailElement.innerHTML = `
+                       
+                        <h2> ${dish.name}</h2> 
+                        <ul>
+                          <li><strong>Cuisine</strong>: ${dish.cuisine}</li>
+                          <li><strong>Ingredients:</strong> ${dish.ingredients}</li>
+                          <li><strong>Details:</strong> ${dish.details}</li>
+                        </ul>
+              `
+            } else{
+              dishDetailElement.innerHTML = "Dish not found";
+            }
+          </script>
+      </body>
+    </html>
