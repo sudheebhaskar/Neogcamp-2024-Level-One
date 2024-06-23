@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      Calorie Details
+    </title>
+  </head>
+  <body>
+    <header>
+      <h2>
+        <a href="index.html">MyHealth</h2>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="calorie.html">Calories</a></li>
+      </ul>
+    </nav>
+    <main>
+      <h1> Calorie Details</h1>
+      <section id="foodDetail">
+
+      </section>
+    </main>
+    <footer>
+     <p>&copy; 2023 MyHealth App. All rights reserved</p>
+    </footer>
+
+    <script>
+      let foodTypes = [
+        {id: "1", meal: "Breakfast", item: "Dosa", calories: "200 cal"},
+        {id: "2", meal: "Lunch", item: "Rice-Sambar", calories: "500 cal"},
+        {id: "3", meal: "Dinner", item: "Roti-Sabzi", calories: "450 cal"}
+      ];
+
+     function getParameterById(id){
+       
+        let url = new URL(window.location.href);
+       
+       return url.searchParams.get(id);
+     }
+
+          let foodTypeMeal = getParameterById('id');
+          let foodType;
+          for(let i=0; i < foodTypes.length; i++){
+            if(foodTypes[i].id === foodTypeMeal){
+              foodType = foodTypes[i];
+            }
+          }
+
+    let foodTypeDetailElement = document.getElementById('foodDetail');
+
+          if(foodType){
+            foodTypeDetailElement.innerHTML = ` 
+                      <h2>${foodType.meal} </h2>
+                      <ul>
+                        <li> Meal: ${foodType.meal} </li>
+                          <li> Item: ${foodType.item} </li>
+                        <li> Calories: ${foodType.calories} </li>
+                      </ul>
+                      `
+          } else {
+            foodTypeDetailElement.innerHTML = "Can't found the meal";
+          }
+        </script>
+  </body>
+</html>
