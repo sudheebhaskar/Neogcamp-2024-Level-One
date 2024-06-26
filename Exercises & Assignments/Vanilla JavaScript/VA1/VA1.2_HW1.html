@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+  <label for="valueOfAge">Enter your age:</label>
+  <input type="number" id="valueOfAge"/>
+  <button id="validateAge">Validate Age</button>
+  <p id="ageValidationText"></p>
+
+  <label for="inputAnimal">Enter your favorite animal:</label>
+  <input type="text" id="inputAnimal"/>
+  <button id="displayAnimal">Display Animal</button>
+  <p id="outputAnimal"> </p>
+
+  <label for="inputColour">Enter your favorite colour:</label>
+  <input type="text" id="inputColour"/>
+  <button id="colourButton">Display Colour</button>
+  <p id="colourText"></p>
+
+  <label for="question">YES/NO Question:</label>
+  <input type="text" id="question"/>
+  <button id="yesnoButton">Display Message</button>
+  <p id="yesornoquestion"></p>
+
+  <label for="evenorodd">Enter a number:</label>
+  <input type="text" id="evenorodd" />
+  <button id="checkNum">Check Number</button>
+  <p id="evenOrOddCheck"></p>
+  
+  <script>
+
+    const ageValue = document.getElementById('valueOfAge');
+    const validateButton = document.getElementById('validateAge');
+    const validationText = document.getElementById('ageValidationText');
+
+    validateButton.addEventListener("click", function(){
+      const temp = ageValue.value;
+      if(temp >=18 && temp <= 100){
+        validationText.textContent = 'Age is valid';
+      } else{
+        validationText.textContent = 'Invalid age. Please enter an age between 18 and 100';
+      }
+    })
+
+
+    const inputAnimal = document.getElementById('inputAnimal');
+    const displayButton = document.getElementById('displayAnimal')
+    const textOutput = document.getElementById('outputAnimal');
+
+    displayButton.addEventListener("click", function(){
+        const animalName = inputAnimal.value;
+        textOutput.textContent = `The Animal name is ${animalName}`;
+          
+    })
+
+    
+ const favColor =  document.getElementById('inputColour');
+const displayColor = document.getElementById('colourButton');
+const outputText = document.getElementById('colourText');
+
+ 
+displayColor.addEventListener("click", function(){
+          const favorite_colour = favColor.value;
+          outputText.textContent = `Favorite Colour is ${favorite_colour}`;
+})
+
+const questionValue = document.getElementById('question');
+const msgDisplay = document.getElementById('yesnoButton');
+const frontDisplay = document.getElementById('yesornoquestion');
+
+msgDisplay.addEventListener("click", function(){
+  const valueOfQuestion = questionValue.value;
+  if(valueOfQuestion === "Yes"){
+    frontDisplay.textContent = `You said Yes!`
+  } else if(valueOfQuestion === "No"){
+    frontDisplay.textContent = `You said No`;
+  } else{
+    frontDisplay.textContent = "Invalid Input";
+  }
+})
+    
+
+  const inputNumber = document.getElementById("evenorodd"); 
+  const checkButton = document.getElementById("checkNum");
+  const evenOrOddCheck = document.getElementById("evenOrOddCheck");
+
+  checkButton.addEventListener("click", function(){
+    const numberValue = inputNumber.value;
+    if(numberValue % 2 == 0){
+      evenOrOddCheck.textContent = `${numberValue} is even.`;
+    } else{
+      evenOrOddCheck.textContent = `${numberValue} is odd.`;
+    }
+    
+  })
+ </script>
+
+</body>
+
+</html>
