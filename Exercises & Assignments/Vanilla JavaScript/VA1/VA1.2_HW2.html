@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+</head>
+
+<body>
+  <label for="country">Enter your country:</label>
+  <input type="text" id="country"/>
+  <button id="countryButton">Display Country</button>
+  <p id="countryText"></p>
+
+<label for="webId">Enter a website name:</label>
+<input type="text" id="webId"/>
+<button id="headingDisplay">Display Heading</button>
+<h1 id="displayText"></h1>
+
+<label for="yesorno">Are you a student?</label> 
+<input type="text" id="yesorno"/> 
+  <button id="displayResponse">Display Response</button>
+  <p id="responseText"></p>
+
+  <label for="ageValue">Enter your age:</label>
+  <input type="number" id="ageValue"/>
+  <button id="ageChecker">Check Age</button>
+  <p id="ageText"></p>
+  
+  <script>
+  const countryName = document.getElementById('country');
+  const ctryButton  = document.getElementById('countryButton');  
+  const  ctryText = document.getElementById('countryText');
+
+  ctryButton.addEventListener("click", function(){
+      const countryEntered = countryName.value;
+      ctryText.textContent = `Your country is: ${countryEntered}`;
+    })
+
+const websiteName = document.getElementById('webId');
+const webButton = document.getElementById('headingDisplay'); 
+const textDisplay = document.getElementById('displayText');
+
+webButton.addEventListener("click", function(){
+  const webName = websiteName.value;
+  textDisplay.textContent = `${webName}`;
+  })
+
+const valueEntered = document.getElementById('yesorno');
+const yesOrNoButton = document.getElementById('displayResponse');
+const textResponse = document.getElementById('responseText');
+
+yesOrNoButton.addEventListener("click", function(){
+  const enteredValue = valueEntered.value;
+  console.log(enteredValue);
+  
+  if(enteredValue === "Yes" || enteredValue === "YES"){
+    textResponse.textContent = "You are a student";
+  } else if(enteredValue === "No" || enteredValue === "NO"){
+    textResponse.textContent = "You are not a student.";
+  } else {
+  textResponse.textContent = "Invalid response. Please enter 'Yes' or 'No'";
+  }
+})
+
+   const valueOfAge = document.getElementById('ageValue');
+   const checkAge = document.getElementById('ageChecker');
+    const textOfAge = document.getElementById('ageText');
+
+    checkAge.addEventListener("click", function(){
+      const outputText = valueOfAge.value;
+
+      if(outputText >= 18){
+        textOfAge.textContent = "You are an adult";
+      } else {
+        textOfAge.textContent = "You are a minor.";
+      }
+    })
+  </script>
+</body>
+
+</html>s
