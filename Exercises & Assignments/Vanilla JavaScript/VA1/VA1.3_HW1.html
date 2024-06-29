@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Textarea</title>
+</head>
+
+<body>
+
+  
+    <label for="textareaId">Enter your favorite book list:</label>
+    <textarea id="textareaId" rows="6" cols="50"></textarea>
+    <button id="favoriteBookBtn">Display Book List</button>
+    <p id="favoriteBookText"></p>
+
+    <label for="recipeText">Enter a recipe:</label>
+    <textarea id="recipeText" rows="6" cols="50"></textarea>
+    <button id="recipeDisplay"> Display Recipe</button>
+    <p id="recipeParagraph"></p>
+
+    <label for="bioText">Enter your personal bio</label>
+    <textarea id="bioText" rows="6" cols="50"></textarea>
+    <button id="displayBtn">Display Bio</button> 
+    <p id="personalBiotext"></p>
+  
+  <label for="goalsInputText">Enter your list of goals:</label>
+    <textarea id="goalsInputText" rows="6" cols="50"></textarea>
+  <button id="displayButton">Display Goals</button>
+  <p id="displayText"></p>
+
+ <label for="storyText">Enter a short story or anecdote:</label>
+  <textarea id="storyText" rows="6" cols="50"></textarea>
+  <button id="storyButton">Display Story</button>
+  <p id="storyParagraph"></p>
+  
+<script>
+  const textareaContent = document.getElementById('textareaId');
+  const favoriteBookbtn = document.getElementById('favoriteBookBtn');
+  const favoriteBooktext = document.getElementById('favoriteBookText');
+
+  favoriteBookbtn.addEventListener("click", function(){
+    const favoriteBookList = textareaContent.value;
+    favoriteBooktext.textContent = `Favorite books are: ${favoriteBookList}`
+  })
+
+  const recipeName = document.getElementById('recipeText');
+  const displayRecipeBtn = document.getElementById('recipeDisplay');
+  const recipeParagraph = document.getElementById('recipeParagraph');
+
+  displayRecipeBtn.addEventListener("click", function(){
+    const ingredients = recipeName.value;
+     const paraText = ingredients.split("\n\n" );
+    recipeParagraph.innerHTML = `<b>Ingredients:</b>` + `<br>` + `${paraText[0]}` + `<br>` +  `<br>` + `<b>Instructions:</b>` +`<br>` + `${paraText[1]}`
+  })
+  
+ const bioText = document.getElementById('bioText');
+  const displayBtn = document.getElementById('displayBtn');
+  const personalBiotext = document.getElementById('personalBiotext');
+
+  displayBtn.addEventListener("click", function(){
+    const text = bioText.value;
+    personalBiotext.textContent = `Your personal bio: ${text}`;
+  })
+
+
+const goalsInputText = document.getElementById('goalsInputText');
+const displayButton = document.getElementById('displayButton');
+  const displayText = document.getElementById('displayText');
+
+  displayButton.addEventListener("click", function(){
+     const textToDisplay = goalsInputText.value;
+  displayText.textContent = `Your list of goals: ${textToDisplay}`;
+  })
+  
+  const textOfStory = document.getElementById('storyText');
+  const storyBtn = document.getElementById('storyButton');
+  const paragraphStory = document.getElementById('storyParagraph');
+
+
+storyBtn.addEventListener("click", function(){
+  const anecdoteText = textOfStory.value;
+  paragraphStory.textContent = `Your short story or anecdote: ${anecdoteText}`;
+})
+
+</script>
+
+</body>
+
+</html>
+
