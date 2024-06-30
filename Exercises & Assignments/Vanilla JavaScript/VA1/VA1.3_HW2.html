@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>TextArea</title>
+  
+</head>
+
+<body>
+  <label for="bookReview">Enter your book review:</label>
+  <textarea id="bookReview" rows="4" cols="25"></textarea>
+  <button id="displayBook">Display Book Review</button>
+  <p id="bookText"></p>
+
+  <label for="personalBio">Enter your personal bio:</label>
+  <textarea id="personalBio" rows="2" cols="20"></textarea>
+  <button id="styledBioBtn">Display Styled Bio</button>
+  <p id="styledText"></p>
+
+
+  <label for="dairyText">Enter your personal dairy entry:</label>
+  <textarea id="dairyText" rows="2" cols="20"></textarea>
+  <button id="displayDiaryBtn">Display Diary Entry</button>
+  <p id="diaryPara"></p>
+
+  <script>
+    const reviewBook= document.getElementById('bookReview');
+    const displayBookBtn = document.getElementById('displayBook');
+    const textBook  = document.getElementById('bookText');
+
+    displayBookBtn.addEventListener("click", function(){
+      const bookValue = reviewBook.value;
+      textBook.textContent = `Your book review: ${bookValue}`;
+    })
+
+    const personalBio = document.getElementById("personalBio");
+    const styledBioBtn = document.getElementById("styledBioBtn");
+    const styledText = document.getElementById("styledText");
+
+    styledBioBtn.addEventListener("click", function(){
+      const stylisedText = personalBio.value;
+       styledText.innerHTML = stylisedText.italics();
+    })
+
+    const  dairyText = document.getElementById('dairyText');
+    const diaryBtn = document.getElementById('displayDiaryBtn');
+    const diaryParagraph= document.getElementById('diaryPara');
+
+   diaryBtn.addEventListener("click", function(){
+     const outputText = dairyText.value;
+     const currentDateTime = new Date().toLocaleString();     diaryParagraph.innerHTML = `<p><strong>${currentDateTime}</strong></p><p>${outputText}</p>`;
+   })
+    
+  </script>
+
+</body>
+
+</html>
