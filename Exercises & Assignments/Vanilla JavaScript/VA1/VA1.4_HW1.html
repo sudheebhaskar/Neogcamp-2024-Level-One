@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Vanilla JavaScript</title>
+</head>
+
+<body>
+  
+  <label for="ageInput">Enter your age:</label>
+  <input id="ageInput" type="number"/>
+  <button id="displayAge">Display Age</button>
+  <button id="checkEligible">Check Eligibility</button>
+  <p id="displayText"></p>
+
+  <label for="yesOrNO">Are you a student?</label>
+  <input id="yesOrNo"/>
+  <button id="answerYesOrNo">Display Answer</button>
+  <button id="eligibleStudent">Check Eligibility</button>
+  <p id="yesOrNoText"></p>
+
+  <label for="password">Enter password:</label>
+  <input id="password"/>
+  <button id="displayPass">Display Password</button>
+  <button id="checkPass">Check Password</button>
+  <p id="passwordText"></p>
+  
+<script>
+  const ageInput = document.querySelector("#ageInput");
+  const displayAgeBtn = document.querySelector("#displayAge");
+  const checkEligibleButton = document.querySelector("#checkEligible");
+  const displayText = document.querySelector("#displayText");
+
+ 
+  displayAgeBtn.addEventListener("click", function(){
+     const age = ageInput.value;
+    displayText.style.color = "black";
+      displayText.textContent = `Your age is: ${age}.`;
+    })
+
+checkEligibleButton.addEventListener("click", function(){
+       const age = ageInput.value;
+        if(age >= 18 ){
+          displayText.style.color = "green"
+          displayText.textContent = "You are eligible"
+       } else{
+          displayText.style.color = "red"
+          displayText.textContent = 'You are not eligible'
+       }
+})
+
+  const yesOrNoInput = document.querySelector("#yesOrNo");
+  const yesOrNoBtn = document.querySelector("#answerYesOrNo");
+  const eligibleStudentBtn = document.querySelector("#eligibleStudent");
+  const studentText = document.querySelector("#yesOrNoText");
+
+  yesOrNoBtn.addEventListener("click", function(){
+    const oneWordInput = yesOrNoInput.value;
+    studentText.style.color = "black";
+    studentText.textContent  = `Your answer is: ${oneWordInput}`;
+   
+  })  
+  
+  eligibleStudentBtn.addEventListener("click", function(){
+    const eligibleValue = yesOrNoInput.value;
+    if(eligibleValue === 'Yes'){
+      studentText.style.color = "green" 
+      studentText.textContent = 'You are eligible'
+    } 
+    else{
+      studentText.style.color = "red"
+      studentText.textContent = "You are not eligible"
+    } 
+    
+  })
+
+  const inputPass = document.querySelector('#password');
+  const displayPassBtn = document.querySelector('#displayPass');
+  const checkPassBtn = document.querySelector("#checkPass");
+  const textPassword = document.querySelector("#passwordText");
+
+  displayPassBtn.addEventListener("click", function(){
+    const passwordText = inputPass.value;
+    textPassword.style.color = "black";
+    textPassword.textContent = `Your password: ${passwordText}`
+  })
+
+ checkPassBtn.addEventListener("click", function(){
+   const textOfPassword = inputPass.value;
+   if(textOfPassword.includes("@")){
+     textPassword.style.color = "green";
+     textPassword.textContent = `Password Accepted`;
+     } else{
+          textPassword.style.color = "red";
+          textPassword.textContent = `Invalid password. Password must contain @ symbol`;
+    
+ }
+ })
+
+  
+</script>
+
+
+  
+</body>
+
+</html>
