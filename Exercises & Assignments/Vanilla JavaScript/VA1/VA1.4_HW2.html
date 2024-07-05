@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Vanilla JavaScript</title>
+</head>
+
+<body>
+  
+  <label for="javascriptExp">What is JavaScript?</label>
+  <textarea type="text" id="javascriptExp" rows="4" cols="30"></textarea>
+  <button id="displayAnswer">Display Answer</button>
+  <button id="wordsCount">Count Words</button>
+  <p id="textExpJS"></p>
+
+  <label for="toDoList">List Todos:</label>
+  <textarea type="text" id="toDoList" rows="4" cols="30"></textarea>
+  <button id="displayToDos">Display Todos</button>
+  <button id="countToDos">Count Todos</button>
+  <p id="textToDo"></p> 
+
+  <label for="enterPW">Enter Password:</label>
+  <input id="enterPW" />
+  <button id="displayPW">Display Password</button>
+  <button id="checkPW">Check Password</button>
+  <p id="textPW"></p>
+  
+  <script>
+    const javascriptExpTxt = document.getElementById('javascriptExp');
+    const displayAnswerBtn = document.getElementById('displayAnswer');
+    const countWordsBtn = document.getElementById('wordsCount');
+    const explanationText = document.getElementById('textExpJS');
+
+  displayAnswerBtn.addEventListener("click", function(){
+       const inputText = javascriptExpTxt.value;
+      explanationText.textContent = `Your answer: ${inputText}`;
+  })
+    
+  countWordsBtn.addEventListener("click", function(){
+         const inputText = javascriptExpTxt.value;
+         const totalWords = inputText.split(' ').length;
+       if(totalWords < 7){
+             explanationText.style.color = "green";
+            explanationText.innerHTML = `Your answer: ${inputText}`+ `<br>` +`<br>`+`Good`;
+            } else{
+            explanationText.style.color= "red";
+            explanationText.innerHTML = `Your answer: ${inputText}`+ `<br>` +'<br>' + `Word Count exceeding.`;   
+}
+    })
+ 
+const inputToDos = document.getElementById('toDoList'); 
+const displayToDoBtn = document.getElementById('displayToDos');
+const countToDosBtn = document.getElementById("countToDos");
+const toDoText = document.getElementById("textToDo");
+
+    
+displayToDoBtn.addEventListener("click", function(){
+  const displayTxt = inputToDos.value;
+  toDoText.textContent = `Your ToDos: ${displayTxt}`;
+})
+
+countToDosBtn.addEventListener("click", function(){
+  const displayTxt = inputToDos.value;
+  const totalWords = displayTxt.split(' ').length;
+  textToDo.textContent = `Total no of ToDos: ${totalWords} `;
+  textToDo.style.color = "green";
+})
+
+    // <label for="enterPW">Enter Password:</label>
+    // <input id="enterPW" />
+    // <button id="displayPW">Display Password</button>
+    // <button id="checkPW">Check Password</button>
+    // <p id="textPW"></p>
+
+    const inputPW =  document.getElementById('enterPW');
+    const displayPWBtn = document.getElementById('displayPW');
+    const checkPWBtn = document.getElementById("checkPW")
+    const passwordText = document.getElementById('textPW');
+
+    displayPWBtn.addEventListener("click", function(){
+      const passwordInput = inputPW.value;
+      passwordText.textContent = `Your Password: ${passwordInput}`;
+    })
+
+    checkPWBtn.addEventListener("click", function(){
+       const inputPassword = inputPW.value;
+       if((inputPassword.length > 5) && (inputPassword.includes('@') || inputPassword.includes('!') || inputPassword.includes('$'))){
+           passwordText.style.color = "green";
+           passwordText.textContent = `Password Accepted.`;
+           } 
+        else{
+         passwordText.style.color="red";
+         passwordText.textContent = `Invalid Password. Password should be more than 5 characters and must contain @ or ! or $ symbol`;
+         }
+    })
+    
+    
+</script>
+
+  
+</body>
+
+</html>  
