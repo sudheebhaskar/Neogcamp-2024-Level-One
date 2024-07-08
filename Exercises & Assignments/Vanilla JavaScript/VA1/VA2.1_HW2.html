@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <label for="agreeTerms">Program 1: Tick the checkbox below to agree to the terms:</label>
+  <br>
+  <input type="checkbox" id="agreeTerms" /> I agree to the terms and conditions.
+  <p id="agreeTermsText"></p>
+  
+
+<label>Program 2: Select Multiple Food Allergies:</label>
+<input type="checkbox" name="Foods" value="Dairy"/> Dairy
+<input type="checkbox" name="Foods" value="Nuts" /> Nuts 
+<input type="checkbox" name="Foods" value="Gluten"/> Gluten
+<button id="displayFoodsBtn">Display Selected Food Allergies</button>
+<p id="foodsText"></p>
+
+  <label>Program 3: Choose multiple Travel Destinations</label>
+  <input type="checkbox" name="Travel" value="Paris" /> Paris
+  <input type="checkbox" name="Travel" value="New York"/> New York
+  <input type="checkbox" name="Travel" value="Tokyo" /> Tokyo
+  <button id="displayTravelsBtn">Display selected Travel Destinations</button>
+  <p id="travelsText"></p>
+
+  <label>Program 4: Select Multiple Sports</label>
+  <input type="checkbox" name="Sports" value="Soccer"/> Soccer
+  <input type="checkbox" name="Sports" value="BasketBall"/> Basketball
+  <input type="checkbox" name="Sports" value="Tennis" /> Tennis
+  <button id="displaySportsBtn">Display Selected Sports</button>
+  <p id="sportsText"></p>
+  
+  <label>Program 5: Choose Mutiple Clothing colors:</label>
+  <input type="checkbox" name="Clothes" value="Black"/> Black
+  <input type="checkbox" name="Clothes" value="White" /> White
+  <input type="checkbox" name="Clothes" value="Blue" /> Blue
+  <button id="displayClothesBtn">Display Selected Clothing Colors</button>
+  <p id="clothesText"></p>
+
+  <label>Program 6: Choose multiple social media platforms</label>
+  <input type="checkbox" name="Socials" value="Facebook"/> Facebook
+  <input type="checkbox" name="Socials" value="Twitter" /> Twitter
+  <input type="checkbox" name="Socials" value="Instagram" /> Instagram
+  <button id="displaySocialsBtn">Display Selected Social Media Platforms:</button>
+  <p id="socialsText"></p>
+  
+  <script>
+    //Program 1
+    const agreeCheckbox = document.getElementById('agreeTerms');
+    const agreeTermsText = document.getElementById("agreeTermsText");
+
+    agreeCheckbox.addEventListener("change", function(){
+      if(agreeCheckbox.checked){
+        agreeTermsText.textContent = `User agreed to terms`;
+      } else{
+        agreeTermsText.textContent = ` `;
+      }
+    })
+
+    //Program 2
+    const foodsCheckboxes = document.getElementsByName("Foods");
+    const displayFoodsBtn = document.getElementById('displayFoodsBtn');
+    const foodsTextResult = document.getElementById("foodsText");
+
+    for(let i=0; i < foodsCheckboxes.length; i++){
+      foodsCheckboxes[i].addEventListener("change", function(){
+        const selectedFoods = [];
+
+        for(let j=0; j < foodsCheckboxes.length; j++){
+          if(foodsCheckboxes[j].checked){
+            selectedFoods.push(foodsCheckboxes[j].value)
+          }
+        }
+        
+        displayFoodsBtn.addEventListener("click", function(){
+         const value = selectedFoods.length;
+          if(value > 0){
+            foodsTextResult.textContent = `Selected Food Allergies: ${selectedFoods.join(", ")}` 
+            }
+          else {
+            foodsTextResult.textContent =`Please select atleast one food allergy`;
+        }
+        })
+      })
+     }
+
+    //Program 3
+    
+    const travelCheckboxes = document.getElementsByName("Travel");
+    const displayTravelsBtn = document.getElementById('displayTravelsBtn');
+    const travelsText = document.getElementById("travelsText");
+
+    for(let i=0; i < travelCheckboxes.length; i++){
+      travelCheckboxes[i].addEventListener("change", function(){
+                    const selectedDestinations = [];
+        for(let j=0; j < travelCheckboxes.length; j++){
+          if(travelCheckboxes[j].checked){
+            selectedDestinations.push(travelCheckboxes[j].value)
+          }
+        }
+        displayTravelsBtn.addEventListener("click", function(){
+              const value = selectedDestinations.length;
+           if(value > 0){
+             travelsText.textContent = `Selected Travel Destinations: ${selectedDestinations.join(", ")}`
+           } else {
+             travelsText.textContent = "Please select atleast one destination."
+           }
+        })
+      })
+    }
+
+   // Program 4   
+  const sportsCheckboxes = document.getElementsByName("Sports");
+  const displaySportsBtn = document.getElementById("displaySportsBtn");
+  const sportsText = document.getElementById("sportsText");
+
+    for(let i=0; i < sportsCheckboxes.length; i++){
+      sportsCheckboxes[i].addEventListener("change", function(){
+        const selectedSports = [];
+
+        for(let j=0; j < sportsCheckboxes.length; j++){
+          if(sportsCheckboxes[j].checked){
+            selectedSports.push(sportsCheckboxes[j].value)
+          }
+        }
+
+      displaySportsBtn.addEventListener("click", function(){
+        const value = selectedSports.length;
+        if(value > 0){
+          sportsText.textContent = `Selected Sports: ${selectedSports.join(", ")}`
+        } else{
+          sportsText.textContent = "Please Select atleast one Sport"
+        }
+      })
+      })
+    }
+
+    //--Program 5
+    const clothesCheckboxes = document.getElementsByName("Clothes");
+    const displayClothesBtn = document.getElementById("displayClothesBtn");
+    const clothesText = document.getElementById("clothesText");  
+
+  for(let i=0; i < clothesCheckboxes.length; i++){
+    clothesCheckboxes[i].addEventListener("change", function(){
+      const selectedClothes = [];
+
+      for(let j=0; j < clothesCheckboxes.length ; j++){
+        if(clothesCheckboxes[j].checked){
+          selectedClothes.push(clothesCheckboxes[j].value);
+        }
+      }
+      displayClothesBtn.addEventListener("click", function(){
+        const sizeOfArray = selectedClothes.length;
+        if(sizeOfArray > 0){
+          clothesText.textContent = `Selected Clothing Colors: ${selectedClothes.join(", ")}`
+        } else {
+          clothesText.textContent = `Please select atleast one clothing color.`
+        }
+      })
+    })
+  }
+
+// Program 6
+   const socialCheckboxes = document.getElementsByName("Socials");
+   const displaySocialsBtn = document.getElementById("displaySocialsBtn");
+   const socialsText = document.getElementById("socialsText");
+
+    for(let i=0; i < socialCheckboxes.length; i++){
+      socialCheckboxes[i].addEventListener("change", function(){
+        const selectedSocials = [];
+
+        for(let j=0; j < socialCheckboxes.length; j++){
+          if(socialCheckboxes[j].checked){
+          selectedSocials.push(socialCheckboxes[j].value);
+          }
+        }
+
+        displaySocialsBtn.addEventListener("click", function(){
+           const actualLength = selectedSocials.length;
+          if(actualLength > 0){
+            socialsText.textContent = `Selected Social Media Platforms: ${selectedSocials.join(", ")}`;
+          } else{
+            socialsText.textContent = "Please select at least one social media platform";
+          }
+        })
+      })
+    }
+    
+    
+  </script>
+</body>
+
+</html>
