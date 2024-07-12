@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  
+ <label>Choose a movie genre:</label>
+  <select id="selectMovie">
+    <option value="Action">Action</option>
+    <option value="Comedy">Comedy</option>
+    <option value="Drama">Drama</option>
+  </select>
+  <p id="selectedMovieResult"></p>
+
+  <label>Select a Weather Condition:</label>
+  <select id="selectWeather">
+    <option value="Sunny">Sunny</option>
+    <option value="Rainy">Rainy</option>
+    <option value="Snowy"> Snowy </option>
+  </select>
+  <p id="selectedWeatherResult"></p>
+
+  <label>Select a Language:</label>
+  <select id="selectLanguage">
+    <option value="English">English</option>
+    <option value="Spanish">Spanish</option>
+    <option value="French">French</option>
+  </select>
+  <button id="dispGreetingBtn">Display Greeting</button>
+  <p id="selectLanguageResult"></p>
+
+<label>Choose a musical instrument:</label>
+<select id="selectInstrument">
+  <option value="Piano">Piano</option>
+  <option value="Guitar"> Guitar</option>
+  <option value="Violin">Violin</option>
+  </select>
+  <button id="displayFunBtn"> Display Fun Fact</button>
+  <p id="selectedInstrument"></p>
+
+  <label>Select a Pet:</label>
+  <select id="selectedPet">
+    <option value="Dog">Dog</option>
+    <option value="Cat">Cat</option>
+    <option value="Fish">Fish</option>
+  </select>
+  <button id="dispPetDesc">Display Pet Description</button>
+  <p id="selectedPetResult"></p>
+  
+  <script>
+
+    const selectedMovie = document.getElementById("selectMovie");
+    const selectedMovieResult = document.getElementById("selectedMovieResult");
+
+    selectedMovie.addEventListener("change", function(){
+      const movieGenreSelected = selectedMovie.value;
+      if(movieGenreSelected === "Action"){
+         selectedMovieResult.textContent = 'Recommended Action Movie: Mad Max - Fury Road';
+      } else if(movieGenreSelected === 'Comedy'){
+        selectedMovieResult.textContent = 'Recommended Comdey Movie: Kung Fu Panda';
+        } else if(movieGenreSelected === 'Drama'){
+         selectedMovieResult.textContent = 'Recommended Drama Movie: Killers of the Flower Moon'
+        } else{
+          selectedMovieResult.textContent = 'Movie not found';
+        }   
+    })
+
+const selectedWeather = document.getElementById("selectWeather");
+const selectedWeatherResult = document.getElementById("selectedWeatherResult");
+
+selectedWeather.addEventListener("change", function(){
+  const weatherSelected = selectedWeather.value;
+  if(weatherSelected === "Sunny"){
+    selectedWeatherResult.textContent = 'Outdoor activity suggestion: Picnic in the park'
+  } else if(weatherSelected === "Rainy"){
+    selectedWeatherResult.textContent = 'Activity Suggestion: Movie Day Indoors'
+  } else if(weatherSelected === "Snowy"){
+    selectedWeatherResult.textContent = 'Outdoor Activity Suggestion: Build a Snowman'
+  } else {
+    selectedWeatherResult.textContent = 'Data not found'
+  }
+})
+
+
+const selectedLanguage = document.getElementById("selectLanguage");
+const languageDisplayBtn = document.getElementById("dispGreetingBtn");
+const selectedLanguageResult = document.getElementById("selectLanguageResult");
+
+languageDisplayBtn.addEventListener("click", function(){
+   const languageSelected = selectedLanguage.value;
+   if(languageSelected === "English"){
+     selectedLanguageResult.textContent = 'Common Greeting: Hello!';
+   } else if(languageSelected === "Spanish"){
+     selectedLanguageResult.textContent = 'Common Greeting: Hola!';
+   } else if(languageSelected === "French"){
+     selectedLanguageResult.textContent = 'Common Greeting: Bonjour';
+   } else {
+     selectedLanguageResult.textContent =  'Data not found'
+   }
+})
+
+  const selectedInstrument = document.getElementById('selectInstrument');
+  const instrumentDispBtn = document.getElementById('displayFunBtn');  
+  const selectedInstrumentTxt = document.getElementById('selectedInstrument');
+
+  instrumentDispBtn.addEventListener("click", function(){
+    const instrumentSelected = selectedInstrument.value;
+    if(instrumentSelected === "Piano"){
+      selectedInstrumentTxt.textContent = 'Fun Fact: The Piano has 88 keys'
+      } else if(instrumentSelected === "Guitar"){
+         selectedInstrumentTxt.textContent = 'Fun Fact: The guitar is one of the most popular instruments in the world'
+      } else if(instrumentSelected === "Violin"){
+      selectedInstrumentTxt.textContent = 'Fun Fact: The Violin is a string instrument known for its sweet sound.'
+      } else{
+      selectedInstrumentTxt.textContent = 'Data not found.'
+      }
+  })
+
+  const selectedPet = document.getElementById("selectedPet");
+  const displayPetBtn = document.getElementById("dispPetDesc"); 
+  const selectedPetResult = document.getElementById("selectedPetResult");
+
+  displayPetBtn.addEventListener("click", function(){
+    const petSelected = selectedPet.value;
+    if(petSelected === "Dog"){
+      selectedPetResult.textContent = 'Pet Description: Dogs are loyal and friendly companions'
+    } else if(petSelected === 'Cat'){
+      selectedPetResult.textContent = 'Pet Description: Cats are independent and playful'
+    } else if(petSelected === "Fish"){
+      selectedPetResult.textContent = 'Pet Description: Fish are low-maintenance and peaceful pets'
+    } else {
+      selectedPetResult.textContent = 'Data not found';
+    }
+  })
+    
+  </script>
+</body>
+
+</html>
