@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+ <h1>User Waitlist Form</h1>
+  <form id="userWaitlistForm">
+    <label for="userName"><strong>Full Name:</strong></label>
+    <input type="text" id="userName"/>
+    <br><br>
+    <label for="phoneNo"><strong>Phone Number:</strong></label>
+    <input type="number" id="phoneNo"/>
+    <br><br>
+
+    <label for="emailInput"> Enter your email: </label>
+    <input type="text" id="emailInput"/>
+    <button id="validateEmailButton">Validate Email</button>
+    <p id="emailValidationResult"></p><br>
+    
+    <label><strong>Gender</strong></label><br>
+    <input type="radio" name="gender" value="Male"/> Male <br>
+    <input type="radio" name="gender" value="Female" /> Female <br>
+    <input type="radio" name="gender" value="Other" /> Other <br>
+    <br>
+    <label><strong>Are you a college graduate?</strong></label><br>
+    <input type="radio" name="college" value="Yes"/> Yes <br>
+    <input type="radio" name="college" value="No" /> No <br>
+    <input type="radio" name="college" value="Dropout" /> Dropout <br>
+    <br>
+    <label><strong>Are you working anywhere full-time or part-time?:</strong></label><br>
+    <select id="selectOccupation">
+      <option value="Working Full Time">Working Full Time</option>
+      <option value="Working Part Time">Working Part Time</option>
+      <option value="Not working anywhere">Not Working Anywhere</option>
+    </select>
+    <br><br>
+    <label for="learnWhy"><strong>Why do you want to learn web development?</strong><br></label>
+    <textarea id="learnWhy" rows="5" cols="30" /></textarea> 
+    <br>
+    <label><strong>How did you come to know about us?</strong></label>
+    <br>
+    <input type="checkbox" name="socialMedia" value="Youtube"/> Youtube<br>
+    <input type="checkbox" name="socialMedia" value="Instagram" /> Instagram <br>
+      <input type="checkbox" name="socialMedia" value="LinkedIn"/> LinkedIn <br>
+      <input type="checkbox" name="socialMedia" value="Twitter" /> Twitter <br>
+      <input type="checkbox" name="socialmedia" value="Friends and Family" /> Friends and family <br>
+      <input type="checkbox" name="socialMedia" value="Other" /> Other<br>
+      <br>
+    <input type="checkbox" name="confirmation" value="I confirm that all information in this form is actually true" /> <strong>I confirm that all information in this form is actually true.</strong>
+    <br><br>
+        <input type="submit" value="Submit Details" />
+  </form>
+
+  <div id="formResult"></div>
+
+  <script>
+    
+    const userWaitlistForm = document.getElementById("userWaitlistForm");
+    const validateEmailButton = document.getElementById("validateEmailButton");
+    const emailValidationResult = document.getElementById("emailValidationResult");
+
+    validateEmailButton.addEventListener("click", function(){
+       const emailInput = document.getElementById("emailInput");
+              const email = emailInput.value;
+              const atIndex = email.indexOf("@");
+            const dotIndex = email.indexOf(".");
+
+          if(atIndex > 0 && dotIndex > atIndex){
+              emailValidationResult.textContent = "Valid Email Address";
+          }  else{
+            emailValidationResult.textContent = "Invalid Email Address";
+          }
+       })
+
+  userWaitlistForm.addEventListener("submit", function(event){
+
+    event.preventDefault();
+    const userName = document.getElementById("userName").value;
+    const phoneNumber = document.getElementById("phoneNo").value;
+     const emailsInput = document.getElementById("emailInput").value;
+  const gender = document.querySelector('input[name="gender"]:checked').value;
+    const student = document.querySelector('input[name="college"]:checked').value;
+    const working = document.getElementById("selectOccupation").value;
+    const learningWhy = document.getElementById("learnWhy").value;
+    const socialMediaAccount = document.querySelectorAll('input[name="socialMedia"]:checked');
+    let selectedSocialMedias = [];
+    for(let i=0; i < socialMediaAccount.length; i++){
+      selectedSocialMedias.push(socialMediaAccount[i].value);
+    }
+    const confirmation = document.querySelector('input[name="confirmation"]:checked').value;
+
+ const userInputValues = `<h2>Details Submitted</h2>
+                          <p><strong>Name: </strong>${userName}</p>
+                          <p><strong>Phone Number: </strong>${phoneNumber}
+                          <p><strong>Email ID: </strong>${emailsInput}</p>
+                          <p><strong>Gender: </strong>${gender}<p>
+                          <p><strong>Are you a college graduate? 
+ </strong>${student}</p>
+                          <p><strong>Are you working anywhere full-time or part-time? </strong>${working}</p>
+                          <p><strong>Why do you want to learn web development? </strong>${learningWhy}</p>
+                          <p><strong>How did you come to know about us?   </strong>${selectedSocialMedias.join(', ')}</p>`
+
+    const divElement = document.getElementById("formResult");
+    divElement.innerHTML = userInputValues;
+    
+  }) 
+    
+    
+  </script>
+</body>
+
+</html>
