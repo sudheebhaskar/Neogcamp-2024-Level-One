@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      Poll Voting
+    </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+    <h1>Poll Voting</h1>
+    
+
+      <label>John Doe
+   <input type="radio" name="candidate" value="John Doe" /></label><br><br>
+ <label> Alex William <input type="radio" name="candidate" value="Alex William" /></label><br><br>
+   <label>Prerana Nawar <input type="radio" name="candidate" value="Prerana Nawar" /></label><br><br>
+    <button class="btn btn-primary" id="voting">Vote</button>
+    
+    <!-- <p id="resultParagraph">
+      <h2>
+        <strong>Results:</strong>
+      </h2>
+    </p>
+    
+    <p id="winner">
+      <h2>
+        <strong>Winner:</strong>
+        </h2>
+      </p>
+    </div> -->
+
+
+    <div class="container text-center">
+      <div class="row align-items-start">
+        <div class="row" id="results">
+         <strong> <h2>Results: </h2></strong>
+        </div>
+        <div class="row" id="winner">
+          <strong><h2>Winner:</h2>
+          </strong>
+              <div id="winnerText">
+                
+              </div>
+                              
+        </div>
+      </div>
+    </div>
+
+
+    <script>
+      const pollRadioButton = document.getElementsByName("candidate");
+      const pollResult = document.getElementById("resultParagraph");
+      const voteButton = document.getElementById("voting");
+      const textWinner = document.getElementById("winnerText");
+      
+      let selectedRadioButton;
+      let countOfVotesJohn = 0;
+      let countOfVotesAlex =0;
+      let countOfVotesPrerana = 0;
+
+      const resultsParagraph = document.getElementById("results");
+     // const winnerText = document.getElementById("winner");
+      
+      for(let i = 0; i < pollRadioButton.length; i++){
+        pollRadioButton[i].addEventListener("change", function(){
+          selectedRadioButton = document.querySelector('input[name="candidate"]:checked').value;  
+        });
+      }
+
+      voteButton.addEventListener("click", function(){
+          const listElement = document.createElement('list-group');
+          const paraElement = document.createElement('p');
+      if(selectedRadioButton === "John Doe"){
+         countOfVotesJohn++;
+        listElement.innerHTML = `<div class="container" >
+                                   <ul class="list-group"> 
+                                      <li class="list-group-item d-flex justify-content-between align-items-center">
+                                      ${selectedRadioButton}: ${countOfVotesJohn}
+                                    </li>
+                                  </ul>
+                                </div>`;
+        resultsParagraph.appendChild(listElement);
+           } 
+      else if(selectedRadioButton === "Alex William"){
+        countOfVotesAlex ++;
+            listElement.innerHTML = `<div class="container">
+                                        <ul class="list-group">
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                              ${selectedRadioButton}: ${countOfVotesAlex}
+                                                    </li>
+                                                 </ul>
+                                              </div>`;
+           resultsParagraph.appendChild(listElement);
+        } 
+        else if(selectedRadioButton === "Prerana Nawar"){
+           countOfVotesPrerana ++;
+          listElement.innerHTML = `<div class="container">
+                                      <ul class="list-group">
+                                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                                       ${selectedRadioButton}: ${countOfVotesPrerana}
+                                      </li>
+                                   </ul>
+                              </div>`;
+             resultsParagraph.appendChild(listElement);
+        } 
+        else{
+          listElement.innerHTML = 'Invalid Input';
+        }
+        
+      if(countOfVotesJohn > countOfVotesAlex && countOfVotesJohn > countOfVotesPrerana){
+           textWinner.innerHTML = `<p>John Doe is winning with ${countOfVotesJohn} votes!</p>`
+           textWinner.appendChild(paraElement);
+      } else if(countOfVotesJohn == countOfVotesAlex){
+          textWinner.innerHTML = `<p>Its a tie between John Doe, Alex William!</p>`;
+           textWinner.appendChild(paraElement);
+      }else if(countOfVotesJohn < countOfVotesAlex){
+          textWinner.innerHTML = `<p>Alex William is winning with the ${countOfVotesAlex} votes!</p>`;
+           textWinner.appendChild(paraElement);
+      } else if(countOfVotesJohn == countOfVotesPrerana){
+          textWinner.innerHTML = `<p>Its a tie between John Doe, Prerana Nawar!</p>`;
+           textWinner.appendChild(paraElement);
+      } else if(countOfVotesAlex > countOfVotesJohn &&  countOfVotesAlex > countOfVotesPrerana){
+          textWinner.innerHTML = `<p> Alex William is winning with the ${countOfVotesAlex} votes.</p>`;
+           textWinner.appendChild(paraElement);
+      }
+        else if(countOfVotesPrerana > countOfVotesJohn && countOfVotesPrerana > countOfVotesAlex){
+            textWinner.innerHTML = `<p> Prerana Nawar is winning with the ${countOfVotesPrerana} votes.</p>`;
+             textWinner.appendChild(paraElement);
+          } else if(countOfVotesJohn == countOfVotesAlex && countOfVotesAlex == countOfVotesPrerana){ 
+            textWinner.innerHTML = `<p> All three candidates have received same number of votes. So it's a tie</p>`;
+            textWinner.appendChild(paraElement);  
+        }
+      })
+    </script>
+
+
+  </body>
+</html>
