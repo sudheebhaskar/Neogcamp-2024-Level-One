@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      Company Report
+    </title>
+  </head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <body>
+    <header>
+  
+    </header>
+    <section class="container mt-4">
+      <h1>HR Report</h1>
+      <hr>
+      <div class="row" id="employee-report">
+
+      </div>
+    </section>
+    <main>
+      <script>
+        function generateEmployeeReport(){
+          const mostWorked = {name: "John Doe", hoursWorked: 210};
+          const highestRated= {name: "Jane Smith", performanceRate: 0.95};
+          const overTime = {overTimeHours: 35}
+
+            const employeeReportDiv = document.querySelector("#employee-report");
+
+
+          function createCard(cardObj){
+            const col = document.createElement('div');
+              col.className = "col-md-4"
+
+            const card = document.createElement('div');
+            card.className = 'card mb-3'
+
+            const cardHeader =  document.createElement('div');
+            cardHeader.className = 'card-header'
+            const h2 = document.createElement('h2');
+            if(cardObj === mostWorked){
+              h2.textContent = 'Most Worked Employee'
+            } else if(cardObj === highestRated){
+              h2.textContent = 'Highest Rated Employee'
+            } else{
+              h2.textContent = 'Total Overtime Hours'
+            }
+          
+
+            cardHeader.appendChild(h2)
+
+            const cardBody = document.createElement('div')
+            cardBody.className = 'card-body'
+
+            const empName = document.createElement('p')
+            if(cardObj.name === undefined){
+              
+            } else{
+              
+              empName.className = 'card-text'
+              empName.innerHTML = `<strong>Name: </strong> ${cardObj.name}`
+            }
+           
+            const empStats = document.createElement('p')
+            empStats.className = 'card-text'
+            if(cardObj === mostWorked){
+              empStats.innerHTML = `<strong>Hours Worked:</strong> ${cardObj.hoursWorked}`
+            } else if(cardObj === highestRated){
+              empStats.innerHTML = `<strong>Performance Rate: </strong> ${cardObj.performanceRate}`
+            } else{
+              empStats.innerHTML = `<strong>Overtime Hours: ${cardObj.overTimeHours}`
+            }
+
+          cardBody.appendChild(empName);
+          cardBody.appendChild(empStats);
+
+          card.appendChild(cardHeader)
+          card.appendChild(cardBody)
+
+          col.appendChild(card)
+
+        employeeReportDiv.appendChild(col);
+}
+
+          createCard(mostWorked);
+          createCard(highestRated);
+          createCard(overTime);
+        }
+
+          generateEmployeeReport();
+
+      </script>
+         
+           
+    </main>
+    
+  </body>
+</html>

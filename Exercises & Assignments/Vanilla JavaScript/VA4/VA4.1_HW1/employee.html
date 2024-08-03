@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      Company Employees 
+    </title>
+  </head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>  
+  <body>
+    <header class="bg-dark text-light text-center py-3">
+      <!-- <a href="index.html"> Company Logo</a>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+        </ul>
+      </nav> -->
+      <h1>List of Employees</h1>
+    </header>
+
+  <section class="container mt-4">
+    <div>
+      <label for="deptFilter"> Filter By Department: </label>
+      <select id="deptFilter">
+        <option value="All Departments"> All Departments </option>
+        <option value="IT"> IT </option>
+        <option value="Design"> Design </option>
+        <option value="Management"> Management </option>
+      </select>
+    </div>
+    
+  </section>
+    
+  <section class="container">
+    <h3>Add a Employee</h3>
+    <form>
+      <div class="mb-3">
+        <label for="employeeName"> Name: </label><br>
+        <input id="employeeName" type="text" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="empTitle">Title: </label><br>
+        <input id="empTitle" type="text" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="deptFilter">Department: </label><br>
+          <select id="deptFilter">
+            <option value="IT"> IT </option>
+            <option value="Design"> Design </option>
+            <option value="Management"> Management </option>
+          </select>
+      </div>
+
+      <button type="button" id="addEmpButton" class="btn btn-primary">Add Employee</button>
+</form>
+  </section>
+
+    
+      <section class="container mt-4">
+        <div id="employeesList" class="row"></div>
+      </section>
+
+
+<script>
+
+  let employees= [
+    {id:"1", name: "John Doe", title: "Software Developer", department: "IT"},
+    {id:"2", name: "Jane Smith", title: "Designer", department:"Design"},
+    {id:"3", name: "Bob Johnson", title:"Project Manager", department:"Management" }
+  ];
+
+  const addEmployeeButton = document.querySelector("#addEmpButton");
+  const employeesList = document.querySelector("#employeesList");
+ const departmentFilter = document.getElementById("deptFilter");
+
+  function updateEmployeesList(filteredDepartment){
+
+    employeesList.innerHTML = ''
+
+
+  for(let i=0; i < filteredDepartment.length; i++){
+    const col =  document.createElement('div')
+    col.className = "col-md-4"
+
+    const card = document.createElement('div');
+    card.className = 'card mb-3'
+
+    const cardHeader = document.createElement('div')
+    cardHeader.className = 'card-header'
+    const h2 = document.createElement('h2');
+    h2.textContent = employees[i].name;
+
+    cardHeader.appendChild(h2);
+
+    const cardBody = document.createElement('div');
+    cardBody.className = 'card-body'
+
+    const title = document.createElement('p')
+    title.className = 'card-text'
+    title.innerHTML = `<strong>Title:</strong> ${employees[i].title}`
+
+    const department = document.createElement('p')
+      department.className = 'card-text'
+      department.innerHTML = `<strong> Department: </strong>${employees[i].department}`
+
+    const detailsLink = document.createElement('a')
+    detailsLink.href =  `employeeDetails.html?id=${employees[i].id}`
+    detailsLink.className = "btn btn-primary"
+    detailsLink.textContent = 'Details'    
+    console.log(detailsLink.href);
+    cardBody.appendChild(title);
+    cardBody.appendChild(department);
+    cardBody.appendChild(detailsLink);
+
+    card.appendChild(cardHeader);
+    card.appendChild(cardBody);
+
+    col.appendChild(card);
+    employeesList.appendChild(col);
+  }
+  }
+
+    addEmployeeButton.addEventListener("click", function(){
+    const empName = document.querySelector("#employeeName").value;
+    const empTitle = document.querySelector("#empTitle").value;
+    const empDept = document.querySelector("#deptFilter").value;
+
+    if(empName && empTitle && empDept){
+      const newEmpId = employees.length + 1;
+      const newEmployee = {
+        id: newEmpId,
+        name: empName,
+        title: empTitle,
+        department: empDept
+      }
+
+        employees.push(newEmployee);
+
+       updateEmployeesList(employees);
+    }
+  })
+  
+  departmentFilter.addEventListener("change", applyDeptFilter)
+
+  function applyDeptFilter(){
+    const selectedDept = departmentFilter.value;
+    const filteredDepartment = []
+
+    if(selectedDept !== "All Departments"){
+      for(let i=0; i < employees.length; i++){
+        if(employees[i].department === selectedDept){
+          filteredDepartment.push(employees[i])
+        }
+      }
+    }
+    updateEmployeesList(filteredDepartment);  
+  }
+   updateEmployeesList(employees);
+  
+</script>
+
+
+      
+    </main>
+  </body>
+</html>
