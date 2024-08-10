@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  
+  <h1>Joke API - Programming Joke</h1>
+  <button id="getDataBtn">Get Programming Joke</button>
+  
+  <div id="dataContainer"></div>
+
+  <script>
+    const getDataBtn = document.querySelector('#getDataBtn');  
+    const dataContainer = document.querySelector('#dataContainer');
+
+   // const apiUrl = "https://randomuser.me/api/"
+      const apiUrl = "https://v2.jokeapi.dev/joke/Programming?type=single";
+    //const apiUrl = "https://api.adviceslip.com/advice"
+
+    getDataBtn.addEventListener("click", function(){
+      fetch(apiUrl)
+       .then(function responseHandler(response){
+         return response.json()
+       })
+      .then(function showData(data){
+        //console.log(data)
+        dataContainer.innerHTML =   `${data.joke}`
+      })
+      .catch(function showError(error){
+        dataContainer.textContent = "An error occured while fetching data."
+      })
+    })
+      </script>
+</body>
+
+</html>
