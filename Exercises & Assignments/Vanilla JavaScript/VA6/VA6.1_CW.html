@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+ <h1>Student List</h1>
+  <ul id="studentList"></ul>
+  
+</body>
+  <script>
+    const apiUrl =  "https://student-management-student-neog.replit.app/students"
+      //'https://va-5-assignment-express-student-neog.replit.app/movies'
+     
+    const studentList = document.querySelector("#studentList");
+
+  function fetchData(){
+    studentList.textContent = "Loading..."
+    fetch(apiUrl)
+    .then(function(response){
+      return response.json()
+    })
+    .then(function(data){
+      if(data){
+        console.log(data)
+        studentList.textContent = ""
+        for(let i=0; i < data.length; i++){
+          const liElements = document.createElement('li')
+           liElements.textContent = `${data[i].name} - ${data[i].grade}`
+          studentList.appendChild(liElements)
+        } 
+        }
+    })
+    .catch(function(error){
+      studentList.textContent = "An error occured while fetching data"
+    })
+  }
+
+    fetchData()
+  </script>
+
+</html>
