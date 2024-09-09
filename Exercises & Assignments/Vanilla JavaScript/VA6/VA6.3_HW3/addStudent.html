@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Student Management</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+</head>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <header>
+    <nav class="navbar navbar-expand-lg text-bg-secondary">
+      <div class="container">
+      <a class="navbar-brand" href="index.html">Student Management</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle = "collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>  
+        <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+        <li class="nav-item">
+          <a class="nav-link" href="studentList.html">Student List</a>
+        </li>
+        <li class="nav-item">
+         <a class="nav-link" href="addStudent.html"> Add Student</a>
+        </li>
+      </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <body>
+
+    <div class="container">
+    <form id="addStudent"><br>
+     <h2>Add Student</h2>
+      <label for="name">Name: </label><br>
+      <input id="name" class="form-control"/> <br>
+
+      <label for="age"> Age:</label> <br>
+      <input id="age" type="number" class="form-control"/> <br>
+
+      <div>
+        <label for="genderFilter"> Gender: </label>
+        <select id="genderFilter" class="form-control"> 
+
+          <option value= "Male"> Male </option> 
+          <option value= "Female"> Female </option>
+           <option value="Other"> Other</option>
+         
+        </select> <br>
+      </div>
+
+      <label for="grade"> Grade:</label> <br>
+      <input id="grade" class="form-control"/> <br>
+
+      <label for="marks"> Marks:</label> <br>
+      <input id="marks" type="number" class="form-control"/> <br>
+
+      <label for="attendence"> Attendence:</label> <br>
+      <input id="attendence" class="form-control" type="number"/> <br>
+
+     <button type="submit" class="btn btn-primary" id="addStudentBtn"> Add Student</button>
+    </form>
+       <div id="postContainer"></div>
+
+      <div id="successMessage"></div>
+      <ul id="studentList" class="row"></ul>
+    </div>
+
+    <script>
+      const studentList = document.querySelector("#studentList");
+      
+      const addStudentForm = document.querySelector("#addStudent")
+      const name = document.querySelector("#name")
+      const age = document.querySelector("#age");
+      const gender = document.querySelector("#genderFilter");
+      const grade = document.querySelector("#grade");
+      const marks = document.querySelector("#marks");
+      const attendence = document.querySelector("#attendence");
+   
+     const successMessage = document.querySelector("#successMessage"); 
+       
+      const postContainer = document.querySelector('#postContainer')
+      const apiUrl = "https://student-management-Student-neog.replit.app/students"
+
+      addStudentForm.addEventListener("submit", function(event){
+       event.preventDefault()
+       const studentData = {                             
+         name: name.value,
+         age: age.value,
+         gender: gender.value,
+         grade: grade.value,
+         marks: marks.value,
+         attendence: attendence.value
+       }
+        fetch(apiUrl, {
+            method: "POST",
+            body: JSON.stringify(studentData),
+            headers:{
+              "content-type":"application/json"
+            }
+          }).then(function(response){
+            return response.json()
+          }).then(function(data){
+            if(data){
+               //studentList.textContent = "Loading..."
+             // postContainer.textContent = JSON.stringify(data)
+              successMessage.textContent = "Student Data Added Successfully"
+            } else{
+              postContainer.textContent = 'Failed to add student.'
+            }  
+          }).catch(function(error){
+        postContainer.textContent = 'An error occured while making the POST call.'
+          })  
+         })
+
+
+
+
+      
+    </script>
+</body>
+
+
+</html>
