@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Inventory Management</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+</head>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <header>
+    <nav class="navbar navbar-expand-lg text-bg-secondary">
+      <div class="container">
+      <a class="navbar-brand" href="index.html">Inventory Management</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle = "collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>  
+        <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+        <li class="nav-item">
+          <a class="nav-link" href="itemList.html">Item List</a>
+        </li>
+        <li class="nav-item">
+         <a class="nav-link" href="addItems.html"> Add Items</a>
+        </li>
+      </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <body>
+    <section class="container">
+      <h1>Item List</h1>
+
+
+        <div>
+          <label for="categoryFilter"> Filter By Category: </label> <br>
+          <select id="categoryFilter"  class="container form-control mb-3">
+            <option value="All">All</option>
+            <option value="Perishable"> Perishable </option>
+            <option value="Non-Perishable"> Non-Perishable </option>
+          </select>
+        </div>
+
+
+
+
+      <div id="successMessage"></div>
+      <ul id="itemList" class="row"></ul>
+         </section>
+
+
+     <script>
+      const apiUrl = 'https://inventory-management-student-neog-ca.replit.app/inventory' 
+
+       const itemList = document.querySelector("#itemList");
+
+        const categoryFilter = document.querySelector("#categoryFilter");
+
+         function renderList(data){
+            for(let i=0; i < data.length; i++){ 
+               const liElements = document.createElement('list-group')
+               //liElements.className = "col-md-12 my-2"
+                liElements.innerHTML = `<div class="container"><ul class="list-group"><li class="list-group-item">
+                ${data[i].itemName} - Quantity: ${data[i].quantity} - Category: ${data[i].category} <button class="btn btn-danger float-end" data-id="${data[i]._id}" id="deleteBtn">Delete</button>`
+               itemList.appendChild(liElements)
+             } 
+          }
+
+          function fetchData(){
+            itemList.textContent = "Loading..."
+            fetch(apiUrl)
+            .then(function(response){
+              return response.json()
+            })
+            .then(function(data){
+              if(data){  
+                console.log(data)
+               //
+                itemList.textContent = ""
+                successMessage.textContent = ""
+              renderList(data)
+                }
+              const deleteButtons = document.querySelectorAll('#deleteBtn')
+                for(let i=0; i < deleteButtons.length; i++){
+                  deleteButtons[i].addEventListener("click", function(event){
+                    const itemId = event.target.getAttribute('data-id')
+                    const apiDeleteUrl = `https://inventory-management-student-neog-ca.replit.app/inventory/${itemId}`
+
+                    fetch(apiDeleteUrl, {
+                      method:"DELETE"
+                    }).then(function(response) {
+                      return  response.json()
+                    }).then (function(data){
+                      if(data){
+                        successMessage.textContent = "Item detail deleted successfully."
+                        fetchData()
+                      }
+                    })
+                  })
+                }
+            })
+            .catch(function(error){
+              itemList.textContent = "An error occured while fetching data."
+            })
+          }
+
+
+            fetchData()
+
+
+          categoryFilter.addEventListener("change", applyCategoryFilter)
+
+           function applyCategoryFilter(){
+
+             fetch(apiUrl)
+              .then(function(response){
+                return response.json()
+              })
+              .then(function(data){
+                if(data){  
+                  //console.log(data)
+                  itemList.textContent = ""
+                  successMessage.textContent = ""
+                  for(let i=0; i < data.length; i++){ 
+                    const liElements = document.createElement('list-group')
+                  }
+             const selectedItems = categoryFilter.value;
+             const filteredItems = []
+
+             if(selectedItems !== "All"){
+               for(let i=0; i < data.length; i++){
+                 if(data[i].category === selectedItems){
+                   filteredItems.push(data[i])
+                 }
+               }
+             }else{
+               itemList.textContent = fetchData()
+             }
+                  renderList(filteredItems)
+             }
+              })
+           }
+
+
+        </script>
+       
+
+</body>
+
+
+</html>
