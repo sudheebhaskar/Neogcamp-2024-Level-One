@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <section class="container">
+  <form id="regForm">
+  <h1>Event Registration Form</h1>
+  <label for="userName">Name: </label> <br>
+  <input type="text" id="userName" /> <br><br>
+
+  <label for="emailID">Email:</label> <br>
+  <input type="email" id="emailID" /> <br><br>
+
+  <label for="selectEvent">Select Event</label> <br>
+    <select id="selectEvent">
+      <option value="Conference">Conference</option>
+      <option value="Workshop">Workshop</option>
+      <option value="Seminar">Seminar</option>
+      <option value="Networking Event">Networking Event</option>
+      <option value="Webinar">Webinar</option> 
+    </select> <br><br>
+
+    <label for="attendeesCount" >Number of Attendees:</label> <br>
+    <input id="attendeesCount" type="number"/> <br><br>
+    
+    <label for="regType">Registration Type:</label>
+    <input type="radio" value="Individual" name="regType"/> Individual 
+    <input type="radio" name="regType" value="Group"/> Group <br><br>
+
+    <label for="addInfo">Additional Information:</label> <br>
+    <textarea id="addInfo" rows="4" cols="50"></textarea> <br><br>
+
+    <input type="submit" id="submitDetails" class="btn btn-primary"/>
+    
+    </form>
+    </section>
+  <div id="formResult">
+    
+  </div>
+  <script>
+
+    regForm.addEventListener("submit", function(event){
+
+      event.preventDefault();
+      const name = document.querySelector("#userName").value;
+      const Email = document.querySelector("#emailID").value;
+      const selectEvent = document.querySelector("#selectEvent").value;
+      const attendeesCount = document.querySelector("#attendeesCount").value;
+      const regType = document.querySelector('input[name="regType"]:checked').value;
+      const addInformation = document.querySelector("#addInfo").value;
+      const divElement = document.querySelector("#formResult");
+      
+      const card = document.createElement('div');
+      card.className = 'card m-3'
+     
+      const cardBody = document.createElement('div');
+      cardBody.className = 'card-body container'
+      
+      const header = document.createElement('h2');
+      header.className = 'card-text mt-3 container'
+      header.innerHTML = `<strong>Registration Submitted: </strong>`
+
+      const userName = document.createElement('p')
+      userName.className = 'card-text'
+      userName.innerHTML = `<strong>Name: </strong>${name}`
+
+      const email = document.createElement('p')
+      email.className = 'card-text'
+      email.innerHTML = `<strong>Email: </strong>${Email}`
+
+      const selectedEvent = document.createElement('p')
+      selectedEvent.className = 'card-text'
+      selectedEvent.innerHTML = `<strong>Event: </strong>${selectEvent}`
+
+      const totalAttendees = document.createElement('p')
+      totalAttendees.className = 'card-text'
+      totalAttendees.innerHTML = `<strong>Number of Attendees: </strong>${attendeesCount}`
+
+      const typeRegistration = document.createElement('p');
+      typeRegistration.className = 'card-text'
+      typeRegistration.innerHTML = `<strong>Registration Type: </strong>${regType}`
+
+      const additionalInfo = document.createElement('p');
+      additionalInfo.className = 'card-text'
+      additionalInfo.innerHTML = `<strong>Additional Information: </strong>${addInformation}`
+      
+      card.appendChild(header);
+      cardBody.appendChild(userName);
+      cardBody.appendChild(email);
+      cardBody.appendChild(selectedEvent);
+      cardBody.appendChild(totalAttendees);
+      cardBody.appendChild(typeRegistration);
+      cardBody.appendChild(additionalInfo);
+      
+      card.appendChild(cardBody);
+      
+      divElement.appendChild(card);   
+    })
+  </script>
+</body>
+
+</html>
