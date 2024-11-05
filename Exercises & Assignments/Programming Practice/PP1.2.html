@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrimeFizzBuzz</title>
+</head>
+<body>
+    <ol id="number-list"></ol>
+
+    <script>
+        function isPrime(num) {
+            if (num <= 1) return false;
+            if (num <= 3) return true;
+
+            if (num % 2 === 0 || num % 3 === 0) return false;
+            for (let i = 5; i * i <= num; i += 6) {
+                if (num % i === 0 || num % (i + 2) === 0) return false;
+            }
+            return true;
+        }
+        
+        const numbers = [];
+        for (let i = 1; i <= 30; i++) {
+            let text;
+            if (isPrime(i)) {
+                if (i % 3 === 0) {
+                    text = "FizzPrime";
+                } else if (i % 5 === 0) {
+                    text = "BuzzPrime";
+                } else {
+                    text = "Prime";
+                }
+            } else if (i % 3 === 0) {
+                text = "Fizz";
+            } else if (i % 5 === 0) {
+                text = "Buzz";
+            } else {
+                text = i;
+            }
+            numbers.push(text);
+        }
+
+        const container = document.getElementById("number-list");
+
+        for (let i = 0; i < numbers.length; i++) {
+            const li = document.createElement("li");
+            li.textContent = numbers[i];
+            container.appendChild(li);
+        }
+    </script>
+</body>
+</html>
