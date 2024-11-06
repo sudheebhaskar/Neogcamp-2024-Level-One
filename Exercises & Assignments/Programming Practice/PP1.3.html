@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odd and Even Squares</title>
+</head>
+<body>
+    <ol id="number-list"></ol>
+
+    <script>
+        function generateNumberArray() {
+            const result = [];
+            for (let i = 1; i <= 20; i++) {
+                const square = i * i;
+                if (i % 2 === 0) {
+                    result.push(`Even: ${square}`);
+                } else {
+                    result.push(`Odd: ${square}`);
+                }
+            }
+            return result;
+        }
+
+        const formattedArray = generateNumberArray();
+        const container = document.getElementById("number-list");
+
+        for (let i = 0; i < formattedArray.length; i++) {
+            const li = document.createElement("li");
+            li.textContent = formattedArray[i];
+            container.appendChild(li);
+        }
+    </script>
+</body>
+</html>
