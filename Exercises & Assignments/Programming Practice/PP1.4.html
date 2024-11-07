@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication Table Generator</title>
+</head>
+<body>
+    <h1>Multiplication Table Generator</h1>
+    <input type="number" id="number-input" placeholder="Enter a number" />
+    <button onclick="generateTable()">Generate Table</button>
+
+    <ul id="multiplication-table"></ul>
+
+    <script>
+        function generateTable() {
+            const number = document.getElementById("number-input").value;
+            const tableContainer = document.getElementById("multiplication-table");
+
+            tableContainer.innerHTML = ''; 
+
+            for (let i = 1; i <= 12; i++) {
+                const li = document.createElement("li");
+                li.textContent = `${number} x ${i} = ${number * i}`;
+                tableContainer.appendChild(li);
+            }
+        }
+    </script>
+</body>
+</html>
