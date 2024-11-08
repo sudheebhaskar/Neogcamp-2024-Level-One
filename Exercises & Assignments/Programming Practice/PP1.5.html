@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capitalize Text</title>
+</head>
+<body>
+    <h1>Text Capitalization</h1>
+    <input type="text" id="sentence-input" placeholder="Enter a sentence"/>
+    <button onclick="capitalizeText()">Capitalize</button>
+
+    <div id="output"></div>
+
+    <script>
+        function capitalizeText() {
+            const input = document.getElementById("sentence-input").value.trim();
+            const words = input.split(/\s+/);
+            let result;
+
+            if (words.length < 4) {
+                result = [];
+                for (let i = 0; i < words.length; i++) {
+                    const word = words[i];
+                    const capitalizedWord = word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+                    result.push(capitalizedWord);
+                }
+                result = result.join(' ');
+            } else {
+                const firstWord = words[0].charAt(0).toUpperCase() + words[0].slice(1).toLowerCase();
+                const remainingWords = words.slice(1).join(' ').toLowerCase();
+                result = firstWord + ' ' + remainingWords;
+            }
+
+            document.getElementById("output").textContent = result;
+        }
+    </script>
+</body>
+</html>
