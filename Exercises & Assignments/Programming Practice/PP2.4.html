@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Increment Counters with Total</title>
+
+</head>
+<body>
+  <button id="increment-count1">Increment Count 1</button>
+  <button id="increment-count2">Increment Count 2</button>
+
+  <p id="count1">Count 1: 0</p>
+  <p id="count2">Count 2: 0</p>
+  <p id="total-count">Total Count: 0</p>
+
+  <script>
+   let count1 = 0;
+    let count2 = 0;
+
+    function updateTotal() {
+      let total = count1 + count2;
+      document.getElementById('total-count').textContent = 'Total Count: ' + total;
+    }
+
+    document.getElementById('increment-count1').addEventListener('click', function() {
+      count1++;
+      document.getElementById('count1').textContent = 'Count 1: ' + count1;
+      updateTotal();
+    });
+
+    document.getElementById('increment-count2').addEventListener('click', function() {
+      count2++;
+      document.getElementById('count2').textContent = 'Count 2: ' + count2;
+      updateTotal();
+    });
+  </script>
+</body>
+</html>
