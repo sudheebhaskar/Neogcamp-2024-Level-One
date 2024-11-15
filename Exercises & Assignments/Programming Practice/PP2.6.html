@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Count Decrement</title>
+</head>
+<body>
+
+    <button onclick="decrementCount1()">Decrement Count 1</button>
+    <button onclick="decrementCount2()">Decrement Count 2</button>
+    <div>
+        <p id="count1">Count 1: 18</p>
+        <p id="count2">Count 2: 17</p>
+        <p id="totalCount">Total Count: 35</p>
+    </div>
+
+    <script>
+        let count1 = 18;
+        let count2 = 17;
+
+        function decrementCount1() {
+            if (count1 > 0) {
+                count1--;
+                updateDisplay();
+            }
+        }
+
+        function decrementCount2() {
+            if (count2 > 0) {
+                count2--;
+                updateDisplay();
+            }
+        }
+
+        function updateDisplay() {
+            document.getElementById('count1').textContent = 'Count 1: ' + count1;
+            document.getElementById('count2').textContent = 'Count 2: ' + count2;
+            document.getElementById('totalCount').textContent = 'Total Count: ' + (count1 + count2);
+        }
+    </script>
+
+</body>
+</html>
