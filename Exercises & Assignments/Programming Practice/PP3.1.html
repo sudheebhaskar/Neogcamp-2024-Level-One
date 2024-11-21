@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> To-Do List</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>To-Do List</h2>
+        <div class="form-group">
+            <label for="task">Enter Task:</label>
+            <input type="text" class="form-control" id="task" placeholder="Enter your task">
+        </div>
+        <div class="form-group">
+            <label for="day">Select Day:</label>
+            <select class="form-control" id="day">
+                <option value="today">Today</option>
+                <option value="tomorrow">Tomorrow</option>
+            </select>
+        </div>
+        <button class="btn btn-primary" onclick="addTask()">Add Task</button>
+
+        <hr>
+        <div class="row">
+
+            <div class="col-md-6">
+        <h4>Today's Tasks:</h4>
+        <ul class="list-group" id="tasks-today"></ul>
+            </div>
+
+            <div class="col-md-6">
+        <h4>Tomorrow's Tasks:</h4>
+        <ul class="list-group" id="tasks-tomorrow"></ul>
+            </div>
+            
+            </div>
+    </div>
+
+    <script>
+        function addTask() {
+            const taskInput = document.getElementById('task');
+            const daySelect = document.getElementById('day');
+            const taskValue = taskInput.value;
+            const dayValue = daySelect.value;
+
+            if (taskValue === '') return; 
+
+            const list = document.getElementById(`tasks-${dayValue}`);
+            const listItem = document.createElement('li');
+            listItem.textContent = taskValue;
+            listItem.classList.add('list-group-item');
+
+            list.appendChild(listItem);
+            taskInput.value = ''; 
+        }
+    </script>
+</body>
+</html>
