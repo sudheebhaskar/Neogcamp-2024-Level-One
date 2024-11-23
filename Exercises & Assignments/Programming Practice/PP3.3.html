@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Planner</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Event Planner</h1>
+        <div class="form-group">
+            <label for="event">Enter Event:</label>
+            <input type="text" class="form-control" id="event" placeholder="Enter your event">
+        </div>
+        <div class="form-group">
+            <label for="day">Select Day:</label>
+            <select id="day" class="form-control">
+                <option value="Sunday">Sunday</option>
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Wednesday</option>
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option>
+                <option value="Saturday">Saturday</option>
+            </select>
+        </div>
+        <button class="btn btn-primary btn-block" onclick="addEvent()">Add Event</button>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <h3>Events on Weekdays:</h3>
+                <ul id="weekdays" class="list-group"></ul>
+            </div>
+            <div class="col-md-6">
+                <h3>Events on Weekends:</h3>
+                <ul id="weekends" class="list-group"></ul>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script>
+        function addEvent() {
+            const eventInput = document.getElementById('event');
+            const daySelect = document.getElementById('day');
+            const eventText = eventInput.value.trim();
+            const day = daySelect.value;
+
+            if (eventText === '') {
+                alert('Please enter an event.');
+                return;
+            }
+
+            const eventItem = document.createElement('li');
+            eventItem.className = 'list-group-item d-flex justify-content-between align-items-center';
+            eventItem.textContent = `${day}: ${eventText}`;
+
+            const deleteButton = document.createElement('button');
+            deleteButton.className = 'btn btn-danger btn-sm';
+            deleteButton.textContent = 'Delete';
+            deleteButton.onclick = function() {
+                this.parentElement.remove();
+            };
+
+            eventItem.appendChild(deleteButton);
+
+            if (day === 'Saturday' || day === 'Sunday') {
+                document.getElementById('weekends').appendChild(eventItem);
+            } else {
+                document.getElementById('weekdays').appendChild(eventItem);
+            }
+
+            eventInput.value = '';
+        }
+    </script>
+</body>
+</html>
